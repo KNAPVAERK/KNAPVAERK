@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="65mm"
+   height="65mm"
+   viewBox="0 0 65 65"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="Templogo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="true"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0334082"
+     inkscape:cx="196.95996"
+     inkscape:cy="167.45285"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <rect
+       x="56.555296"
+       y="213.92655"
+       width="84.587051"
+       height="23.605689"
+       id="rect4" />
+  </defs>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.30162px;font-family:Garamond;-inkscape-font-specification:Garamond;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#504416;stroke-width:0.260772"
+     x="52.676849"
+     y="33.170895"
+     id="text5"
+     transform="matrix(0.99993338,1.3294832e-4,-1.329306e-4,1.0000666,0,0)"
+     inkscape:export-filename="knapværk tekst.svg"
+     inkscape:export-xdpi="96"
+     inkscape:export-ydpi="96"><tspan
+       sodipodi:role="line"
+       id="tspan5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.30162px;font-family:'Baskerville Old Face';-inkscape-font-specification:'Baskerville Old Face';text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:rtl;text-anchor:start;fill:#504416;stroke-width:0.260772"
+       x="52.676849"
+       y="33.170895"
+       rotate="0 0 0 0 0 0 0 0 0"><tspan
+   style="letter-spacing:-0.0511361px;stroke-width:0.260772"
+   id="tspan15">K</tspan><tspan
+   style="letter-spacing:-0.204544px;stroke-width:0.260772"
+   id="tspan11">N</tspan><tspan
+   style="letter-spacing:-0.204544px;stroke-width:0.260772"
+   id="tspan14">A</tspan>P<tspan
+   style="letter-spacing:-0.782266px;stroke-width:0.260772"
+   id="tspan10">V</tspan>Æ<tspan
+   style="letter-spacing:-0.204544px;stroke-width:0.260772"
+   id="tspan13">R</tspan>K</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.84501px;font-family:'Baskerville Old Face';-inkscape-font-specification:'Baskerville Old Face';text-align:start;letter-spacing:0.319815px;writing-mode:lr-tb;direction:rtl;text-anchor:start;fill:#504416;stroke-width:0.159907"
+     x="43.047798"
+     y="35.780685"
+     id="text16"><tspan
+       id="tspan16"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.84501px;font-family:Garamond;-inkscape-font-specification:Garamond;letter-spacing:0.319815px;direction:rtl;stroke-width:0.159907"
+       x="43.367611"
+       y="35.780685"
+       sodipodi:role="line">LARS BJERRE</tspan></text>
+  <rect
+     style="fill:#000000;fill-opacity:0;stroke-width:0.264583"
+     id="rect16"
+     width="50.615868"
+     height="1.5209365"
+     x="7.4168334"
+     y="32.700138" />
+</svg>
