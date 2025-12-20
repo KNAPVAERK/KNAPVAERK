@@ -1,5 +1,82 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knapværk</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Din CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-  <img src="assets/images/logo.svg" alt="Virksomhedslogo" style="display: block; margin: 0 auto; max-width: 3000px;">
+  <main class="container">
+
+    <!-- Logo -->
+    <img src="assets/images/logo.svg" alt="Knapværk logo" class="logo">
+
+    <!-- Instagram (sleek line-art) -->
+    <div class="instagram">
+      <a href="https://instagram.com/knapvaerkcom" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+        </svg>
+        <span class="insta-label">Følg arbejdet på Instagram</span>
+      </a>
+    </div>
+
+    <!-- Kontaktformular -->
+    <form id="contactForm" class="contact" action="https://formspree.io/f/mnjadppw" method="POST">
+      <input type="text" name="subject" placeholder="Emne" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Besked" required></textarea>
+
+      <input type="hidden" name="_subject" value="Ny besked fra hjemmesiden">
+      <input type="hidden" name="_template" value="table">
+
+      <button type="submit">Send</button>
+    </form>
+
+    <!-- Tak-besked -->
+    <div id="thankMessage" class="thank-message" style="display:none;">
+      <h2>Tak!</h2>
+      <p>Din besked er sendt. Vi vender tilbage så hurtigt som muligt.</p>
+    </div>
+<footer class="site-footer">
+  <p>KNAPVÆRK | CVR: 12345678</p>
+  <p>Stavrevej 512, Kerteminde | bjerre@knapvaerk.dk</p>
+</footer>
+  </main>
+
+  <!-- Inline JS til tak-besked -->
+  <script>
+    const form = document.getElementById('contactForm');
+    const thankMessage = document.getElementById('thankMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          thankMessage.style.display = 'block';
+        } else {
+          alert('Noget gik galt. Prøv igen.');
+        }
+      }).catch(() => {
+        alert('Noget gik galt. Prøv igen.');
+      });
+    });
+  </script>
+
 </body>
-
-
+</html>
