@@ -1,0 +1,59 @@
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(247,246,244,1) 0%, rgba(240,239,237,1) 100%);
+  margin-bottom: 2.5rem;
+}
+
+.logoContainer {
+  width: 1200px;
+  max-width: 90vw;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: default;
+  animation:
+    luxuryReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    luxuryBreathe 3s ease-in-out 1.2s infinite;
+}
+
+@keyframes luxuryReveal {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.96) translateY(40px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes luxuryBreathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.96; transform: scale(1.008); }
+}
+
+/* Mobile Hero Optimization - Luxury Refinement */
+@media(max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    height: auto;
+    padding-top: 66px;
+  }
+
+  .logoContainer {
+    width: 80vw;
+  }
+}

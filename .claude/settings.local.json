@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(move sanity.config.ts sanity.config.js.backup)",
+      "Bash(npm run dev:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
