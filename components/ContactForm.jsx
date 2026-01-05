@@ -103,12 +103,33 @@ export default function ContactForm() {
 
     const formData = new FormData(e.target)
 
-    try {
-      const res = await fetch('https://formspree.io/f/mnjadppw', {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
+    // Honeypot spam protection - check if bot filled the hidden field
+    if (formData.get('_gotcha')) {
+      setLoading(false)
+      setStatus({
+        type: 'error',
+        message: 'Spam detected. Please try again.'
       })
+      return
+    }
+
+    // Convert FormData to JSON
+    const data = {
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message')
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      })
+
+      const result = await res.json()
 
       if (res.ok) {
         setLoading(false)
@@ -118,13 +139,13 @@ export default function ContactForm() {
         })
         setFormVisible(false)
       } else {
-        throw new Error('Form submission failed')
+        throw new Error(result.error || 'Form submission failed')
       }
     } catch (error) {
       setLoading(false)
       setStatus({
         type: 'error',
-        message: 'Noget gik galt. Prøv igen.'
+        message: error.message || 'Noget gik galt. Prøv igen.'
       })
     }
   }
@@ -150,6 +171,15 @@ export default function ContactForm() {
             className={styles.form}
             noValidate
           >
+            {/* Honeypot field for spam protection - hidden from users */}
+            <input
+              type="text"
+              name="_gotcha"
+              tabIndex="-1"
+              autoComplete="off"
+              style={{ display: 'none' }}
+            />
+
             <div className={`${styles.formField} ${validation.email.valid === false ? styles.error : ''} ${validation.email.valid === true ? styles.valid : ''}`}>
               <label htmlFor="email">Email</label>
               <input
@@ -206,6 +236,13 @@ export default function ContactForm() {
               </div>
             )}
           </form>
+        )}
+
+        {/* Email fallback text */}
+        {formVisible && (
+          <div className={styles.emailFallback}>
+            <p>Foretrækkes direkte email? Skriv til <a href="mailto:info@knapvaerk.com">info@knapvaerk.com</a></p>
+          </div>
         )}
       </div>
     </section>
