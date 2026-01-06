@@ -18,10 +18,14 @@ export default function GallerySection({
   const sectionRef = useRef(null)
 
   const openLightbox = (image, index) => {
+    // Prevent body scrolling when lightbox opens
+    document.body.style.overflow = 'hidden'
     setLightboxImage({ ...image, index })
   }
 
   const closeLightbox = () => {
+    // Re-enable body scrolling when lightbox closes
+    document.body.style.overflow = 'unset'
     setLightboxImage(null)
   }
 
@@ -48,6 +52,13 @@ export default function GallerySection({
       }
     }
   }, [])
+
+  // Cleanup body overflow on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [lightboxImage])
 
   return (
     <section

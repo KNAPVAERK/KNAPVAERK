@@ -162,7 +162,6 @@ export default function ContactForm() {
           <div className={styles.successState}>
             <div className={styles.successIcon}></div>
             <h3 className={styles.successTitle}>Tak for din besked</h3>
-            <p className={styles.successText}>Jeg vender tilbage hurtigst muligt</p>
           </div>
         ) : (
           <form
