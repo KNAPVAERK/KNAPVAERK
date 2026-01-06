@@ -16,17 +16,57 @@ export default function GallerySection({
   const [visible, setVisible] = useState(false)
   const [lightboxImage, setLightboxImage] = useState(null)
   const sectionRef = useRef(null)
+  const lightboxRef = useRef(null)
+  const closeButtonRef = useRef(null)
+  const lastFocusedElement = useRef(null)
 
   const openLightbox = (image, index) => {
-    // Prevent body scrolling when lightbox opens
+    lastFocusedElement.current = document.activeElement
     document.body.style.overflow = 'hidden'
     setLightboxImage({ ...image, index })
   }
 
   const closeLightbox = () => {
-    // Re-enable body scrolling when lightbox closes
     document.body.style.overflow = 'unset'
     setLightboxImage(null)
+
+    if (lastFocusedElement.current) {
+      lastFocusedElement.current.focus()
+    }
+  }
+
+  const navigateToNextImage = () => {
+    if (!lightboxImage || !images || images.length <= 1) return
+
+    const nextIndex = (lightboxImage.index + 1) % images.length
+    setLightboxImage({ ...images[nextIndex], index: nextIndex })
+  }
+
+  const navigateToPreviousImage = () => {
+    if (!lightboxImage || !images || images.length <= 1) return
+
+    const prevIndex = lightboxImage.index === 0
+      ? images.length - 1
+      : lightboxImage.index - 1
+    setLightboxImage({ ...images[prevIndex], index: prevIndex })
+  }
+
+  const handleKeyDown = (e) => {
+    if (!lightboxImage) return
+
+    switch(e.key) {
+      case 'Escape':
+        closeLightbox()
+        break
+      case 'ArrowRight':
+        navigateToNextImage()
+        break
+      case 'ArrowLeft':
+        navigateToPreviousImage()
+        break
+      default:
+        break
+    }
   }
 
   useEffect(() => {
@@ -57,6 +97,52 @@ export default function GallerySection({
   useEffect(() => {
     return () => {
       document.body.style.overflow = 'unset'
+    }
+  }, [lightboxImage])
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (lightboxImage) {
+      document.addEventListener('keydown', handleKeyDown)
+
+      setTimeout(() => {
+        closeButtonRef.current?.focus()
+      }, 100)
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown)
+      }
+    }
+  }, [lightboxImage])
+
+  // Focus trap
+  useEffect(() => {
+    if (!lightboxImage) return
+
+    const handleTabKey = (e) => {
+      if (!lightboxRef.current) return
+
+      const focusableElements = lightboxRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
+
+      if (e.key !== 'Tab') return
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault()
+        lastElement.focus()
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault()
+        firstElement.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleTabKey)
+
+    return () => {
+      document.removeEventListener('keydown', handleTabKey)
     }
   }, [lightboxImage])
 
@@ -94,6 +180,14 @@ export default function GallerySection({
                   quality={90}
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className={styles.image}
+                  tabIndex={0}
+                  role="button"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      openLightbox(image, index)
+                    }
+                  }}
                 />
                 {image.caption && (
                   <p className={styles.caption}>{image.caption}</p>
@@ -109,7 +203,14 @@ export default function GallerySection({
       </div>
 
       {lightboxImage && (
-        <div className={styles.lightbox} onClick={closeLightbox}>
+        <div
+          ref={lightboxRef}
+          className={styles.lightbox}
+          onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Forstørret visning af ${title} billede ${lightboxImage.index + 1} af ${images.length}`}
+        >
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <Image
               src={urlFor(lightboxImage.asset).width(2000).url()}
@@ -120,11 +221,24 @@ export default function GallerySection({
               sizes="90vw"
               className={styles.lightboxImage}
             />
-            <button className={styles.closeButton} onClick={closeLightbox}>
+            <button
+              ref={closeButtonRef}
+              className={styles.closeButton}
+              onClick={closeLightbox}
+              aria-label="Luk forstørret visning (ESC)"
+            >
               ✕
             </button>
             {lightboxImage.caption && (
               <p className={styles.lightboxCaption}>{lightboxImage.caption}</p>
+            )}
+
+            {images && images.length > 1 && (
+              <div className={styles.navigationHint} aria-hidden="true">
+                <span className={styles.hintText}>
+                  ← → Navigér mellem billeder
+                </span>
+              </div>
             )}
           </div>
         </div>

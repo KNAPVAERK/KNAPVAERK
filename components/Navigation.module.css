@@ -370,3 +370,64 @@
     }
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    animation: none;
+  }
+
+  .navLogo,
+  .logoImage {
+    transition: none;
+  }
+
+  .navLogo:hover .logoImage {
+    transform: none;
+  }
+
+  .navList a {
+    transition: opacity 0.01ms, color 0.01ms;
+  }
+
+  .navList a:hover {
+    transform: none;
+  }
+
+  .navList a::after {
+    transition: width 0.01ms, left 0.01ms;
+  }
+
+  .navList a.active::after {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 768px) {
+  .burgerButton {
+    transition: none;
+  }
+
+  .burgerButton:active {
+    transform: none;
+  }
+
+  .burgerLine {
+    transition: all 0.01ms;
+  }
+
+  .mobileMenuOverlay,
+  .mobileMenu,
+  .mobileMenuList a {
+    transition: none;
+  }
+
+  .activeIndicator {
+    animation: none;
+  }
+
+  .mobileMenu.open .mobileMenuList li {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

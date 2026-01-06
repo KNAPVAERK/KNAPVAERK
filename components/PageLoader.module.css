@@ -53,3 +53,20 @@
     max-width: 90vw;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .logoWrapper,
+  .logo {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .loader {
+    transition: none;
+  }
+
+  .loader.fadeOut {
+    opacity: 0;
+  }
+}

@@ -149,8 +149,16 @@
 .form input:focus,
 .form textarea:focus {
   outline: none;
-  border-color: #666;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03);
+  border-color: var(--text-primary);
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.03),
+    0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.form input:focus-visible,
+.form textarea:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
 }
 
 .form textarea {
@@ -206,6 +214,19 @@
 
 .submitBtn:disabled {
   cursor: not-allowed;
+}
+
+.submitBtn:focus {
+  outline: none;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.submitBtn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 .submitBtn.isLoading {
@@ -401,5 +422,50 @@
   .submitBtn {
     width: 100%;
     padding: 1.25rem; /* Larger touch target */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formContainer {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .form,
+  .formField,
+  .submitBtn,
+  .emailFallback {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .validationMessage {
+    transition: none;
+  }
+
+  .ripple {
+    animation: none;
+    display: none;
+  }
+
+  .submitBtn:active:not(:disabled),
+  .submitBtn.isLoading {
+    transform: none;
+  }
+
+  .btnLoader::after {
+    animation: none;
+    border-top-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .formStatus,
+  .successIcon,
+  .successState {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

@@ -57,3 +57,12 @@
     width: 80vw;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

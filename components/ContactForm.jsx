@@ -187,8 +187,15 @@ export default function ContactForm() {
                 type="email"
                 required
                 onChange={handleEmailChange}
+                aria-describedby="email-error"
+                aria-invalid={validation.email.valid === false}
               />
-              <div className={`${styles.validationMessage} ${validation.email.message ? styles.visible : ''}`}>
+              <div
+                id="email-error"
+                className={`${styles.validationMessage} ${validation.email.message ? styles.visible : ''}`}
+                aria-live="polite"
+                role="alert"
+              >
                 {validation.email.message}
               </div>
             </div>
@@ -200,8 +207,15 @@ export default function ContactForm() {
                 name="subject"
                 type="text"
                 onChange={handleSubjectChange}
+                aria-describedby="subject-error"
+                aria-invalid={validation.subject.valid === false}
               />
-              <div className={`${styles.validationMessage} ${validation.subject.message ? styles.visible : ''}`}>
+              <div
+                id="subject-error"
+                className={`${styles.validationMessage} ${validation.subject.message ? styles.visible : ''}`}
+                aria-live="polite"
+                role="alert"
+              >
                 {validation.subject.message}
               </div>
             </div>
@@ -213,8 +227,15 @@ export default function ContactForm() {
                 name="message"
                 required
                 onChange={handleMessageChange}
+                aria-describedby="message-error"
+                aria-invalid={validation.message.valid === false}
               />
-              <div className={`${styles.validationMessage} ${validation.message.message ? styles.visible : ''}`}>
+              <div
+                id="message-error"
+                className={`${styles.validationMessage} ${validation.message.message ? styles.visible : ''}`}
+                aria-live="polite"
+                role="alert"
+              >
                 {validation.message.message}
               </div>
             </div>
@@ -224,6 +245,8 @@ export default function ContactForm() {
               className={`${styles.submitBtn} ${loading ? styles.isLoading : ''}`}
               disabled={loading}
               onClick={createRipple}
+              aria-busy={loading}
+              aria-label={loading ? "Sender besked..." : "Send besked"}
             >
               <span className={styles.btnText}>Send</span>
               <span className={styles.btnLoader} aria-hidden="true"></span>
