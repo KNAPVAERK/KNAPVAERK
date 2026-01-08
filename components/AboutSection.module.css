@@ -159,23 +159,41 @@
 
 @media(max-width: 768px) {
   .about {
-    padding: var(--space-lg) 1.5rem;
+    padding: 4rem 1.5rem;
   }
 
   .container {
     gap: 2.5rem;
   }
 
+  .sectionNumber {
+    font-size: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
   .title {
-    margin-bottom: 2rem;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .text {
+    animation: none;
   }
 
   .text p {
     font-size: 1rem;
     line-height: 1.8;
+    margin-bottom: 1.25rem;
+    animation: none;
+  }
+
+  .text p:first-child {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
   }
 
   .imageContainer {
     border-radius: 6px;
+    aspect-ratio: 3/4;
   }
 }

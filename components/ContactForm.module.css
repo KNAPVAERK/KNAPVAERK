@@ -424,20 +424,54 @@
     padding: 0 1.5rem;
   }
 
+  .textBlock h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .textBlock p {
+    font-size: 0.9rem;
+  }
+
   .formContainer {
     padding: 2rem;
     min-height: 350px;
+  }
+
+  .formField {
+    margin-bottom: 1.5rem;
   }
 
   .form input,
   .form textarea {
     font-size: 16px; /* Prevents iOS zoom */
     -webkit-appearance: none; /* Removes iOS styling */
+    padding: 1rem;
+  }
+
+  .form label {
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
   }
 
   .submitBtn {
     width: 100%;
     padding: 1.25rem; /* Larger touch target */
+    margin-top: 0.5rem;
+  }
+
+  .successIcon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .successTitle {
+    font-size: 1.25rem;
+  }
+
+  .successText {
+    font-size: 0.9rem;
   }
 }
 
