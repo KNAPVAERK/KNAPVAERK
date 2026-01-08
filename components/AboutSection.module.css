@@ -25,6 +25,16 @@
   max-width: 38rem;
 }
 
+.sectionNumber {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  animation: fadeInUp 0.8s var(--easing-entrance) 0.1s backwards;
+}
+
 .title {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
@@ -40,10 +50,18 @@
 
 .text p {
   font-size: 1.05rem;
-  line-height: 1.75;
-  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
   color: var(--text-primary);
   max-width: none;
+  animation: fadeInUp 0.8s var(--easing-entrance) 0.4s backwards;
+}
+
+.text p:first-child {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
 }
 
 .text p:last-child {
@@ -70,6 +88,16 @@
 
 .imageContainer:hover .image {
   transform: scale(1.02);
+}
+
+.imageContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.08) 100%);
+  pointer-events: none;
+  border-radius: 8px;
+  z-index: 1;
 }
 
 .imagePlaceholder {
