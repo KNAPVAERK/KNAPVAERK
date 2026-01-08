@@ -167,7 +167,10 @@ export default function ContactForm() {
         {!formVisible && status.type === 'success' ? (
           <div className={styles.successState}>
             <div className={styles.successIcon}></div>
-            <h3 className={styles.successTitle}>Tak for din besked</h3>
+            <div>
+              <h3 className={styles.successTitle}>Tak for din besked</h3>
+              <p className={styles.successText}>Jeg læser alt, hvad I skriver. Du hører fra mig inden længe.</p>
+            </div>
           </div>
         ) : (
           <form

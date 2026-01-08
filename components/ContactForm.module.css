@@ -296,8 +296,8 @@
   width: 4rem;
   height: 4rem;
   margin: 0 auto;
-  background: rgba(0, 0, 0, 0.02);
-  border: 2px solid var(--text-primary);
+  background: rgba(184, 149, 106, 0.08);
+  border: 2px solid var(--accent-gold);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -311,19 +311,21 @@
   font-weight: 400;
   margin: 0;
   letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
 }
 
 .successText {
   font-size: 0.95rem;
-  font-style: italic;
   color: var(--text-secondary);
   margin: 0;
   line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 .successIcon::after {
   content: '✓';
-  color: var(--text-primary);
+  color: var(--accent-gold);
+  font-weight: 700;
 }
 
 @keyframes successPop {
