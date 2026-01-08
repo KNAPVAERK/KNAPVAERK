@@ -156,8 +156,9 @@ export default function ContactForm() {
   }
 
   return (
-    <section className={`${styles.section} ${styles.subtleBg}`} id="contact" data-section="03">
+    <section className={`${styles.section} ${styles.subtleBg}`} id="contact" data-section="04">
       <div className={styles.textBlock}>
+        <div className={styles.sectionNumber}>04</div>
         <h2>Kontakt</h2>
         <p>Send en besked. Jeg vender tilbage hurtigst muligt.</p>
       </div>

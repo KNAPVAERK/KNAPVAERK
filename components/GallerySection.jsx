@@ -240,6 +240,12 @@ export default function GallerySection({
                 </span>
               </div>
             )}
+
+            <div className={styles.escapeHint} aria-hidden="true">
+              <span className={styles.hintText}>
+                ESC for at lukke
+              </span>
+            </div>
           </div>
         </div>
       )}

@@ -27,6 +27,15 @@
   text-align: center;
 }
 
+.sectionNumber {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
 .textBlock h2 {
   font-size: 2rem;
   font-weight: 400;
