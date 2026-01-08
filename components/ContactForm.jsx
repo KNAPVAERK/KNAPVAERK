@@ -13,6 +13,11 @@ export default function ContactForm() {
     message: { valid: null, message: '' }
   })
 
+  // Check if form is valid (all fields have valid: true)
+  const isFormValid = validation.email.valid === true &&
+                      validation.subject.valid === true &&
+                      validation.message.valid === true
+
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return re.test(email)
@@ -242,11 +247,11 @@ export default function ContactForm() {
 
             <button
               type="submit"
-              className={`${styles.submitBtn} ${loading ? styles.isLoading : ''}`}
-              disabled={loading}
+              className={`${styles.submitBtn} ${loading ? styles.isLoading : ''} ${!isFormValid ? styles.disabled : ''}`}
+              disabled={loading || !isFormValid}
               onClick={createRipple}
               aria-busy={loading}
-              aria-label={loading ? "Sender besked..." : "Send besked"}
+              aria-label={loading ? "Sender besked..." : !isFormValid ? "Udfyld alle felter for at sende" : "Send besked"}
             >
               <span className={styles.btnText}>Send</span>
               <span className={styles.btnLoader} aria-hidden="true"></span>

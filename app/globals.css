@@ -252,12 +252,38 @@ a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  transition: color var(--duration-fast) var(--easing-smooth);
+}
+
+/* Gold accent on link hover */
+a:hover {
+  color: var(--accent-gold);
+}
+
+/* Gold accent on link focus */
+a:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 /* Buttons */
 button {
   font-family: inherit;
   cursor: pointer;
+  transition: all var(--duration-fast) var(--easing-smooth);
+}
+
+/* Gold accent on button hover */
+button:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 2px var(--accent-gold);
+  color: var(--accent-gold);
+}
+
+/* Gold accent on button focus (keyboard navigation) */
+button:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
 }
 
 /* Cursor states for luxury feel */

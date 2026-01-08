@@ -18,14 +18,14 @@ export default async function Home() {
   // Hardcoded fallback data for initial deployment
   const worksSection = gallerySections.find(s => s.slug?.current === 'works') || {
     title: 'Udvalgte værker',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel urna nec odio tincidunt fermentum.',
+    subtitle: 'Hver genstand fortæller en historie om præcision, materialekendskab og dedikation til håndværket.',
     metaText: 'Håndlavet i Danmark',
     images: []
   }
 
   const craftSection = gallerySections.find(s => s.slug?.current === 'craft') || {
     title: 'Håndværk',
-    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Curabitur vitae lorem ut massa ullamcorper aliquet.',
+    subtitle: 'Arbejdet udføres med traditionelle metoder og primært håndværktøj. Træet udvælges enkeltvis og bearbejdes med fokus på fiberretning, densitet og overflade.',
     images: []
   }
 

@@ -12,7 +12,16 @@
       "Bash(git commit:*)",
       "Bash(gh run list:*)",
       "Bash(npm install:*)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(git rm:*)",
+      "Bash(npm run build:*)",
+      "Bash(test:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(cat:*)",
+      "Bash(git show:*)",
+      "Bash(npx sanity --version)",
+      "Bash(npx sanity dev)"
     ]
   }
 }

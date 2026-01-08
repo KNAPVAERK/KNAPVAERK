@@ -7,7 +7,8 @@ const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-01-02'
 
 export default defineConfig({
-  basePath: '/studio',
+  // Remove basePath for standalone Sanity Studio hosting
+  // basePath: '/studio', // Only needed when embedded in Next.js app
   projectId,
   dataset,
   schema: {

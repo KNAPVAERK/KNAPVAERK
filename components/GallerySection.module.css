@@ -93,6 +93,11 @@
   opacity: 0;
   transform: translateY(30px) scale(0.98);
   animation: revealImage 1s var(--easing-entrance) forwards;
+  transition: box-shadow 0.3s var(--easing-smooth);
+}
+
+.imageWrapper:hover {
+  box-shadow: var(--shadow-xl), inset 0 0 0 2px #b8956a;
 }
 
 .imageWrapper:nth-child(1) {
@@ -152,6 +157,23 @@
 .image:focus {
   outline: 3px solid rgba(0, 0, 0, 0.6);
   outline-offset: -3px;
+}
+
+/* Magnifying glass indicator on image hover */
+.imageWrapper::after {
+  content: '🔍';
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s var(--easing-smooth);
+  pointer-events: none;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper:hover::after {
+  opacity: 1;
 }
 
 .imagePlaceholder {
