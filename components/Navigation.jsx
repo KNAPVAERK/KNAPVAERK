@@ -141,7 +141,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'works')}
               className={activeSection === 'works' ? styles.active : ''}
             >
-              VÆRKER
+              KOLLEKTION
             </a>
           </li>
           <li>
@@ -194,7 +194,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'works')}
               className={activeSection === 'works' ? styles.active : ''}
             >
-              <span className={styles.mobileMenuText}>VÆRKER</span>
+              <span className={styles.mobileMenuText}>KOLLEKTION</span>
               {activeSection === 'works' && <span className={styles.activeIndicator}></span>}
             </a>
           </li>
