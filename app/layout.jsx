@@ -1,10 +1,12 @@
 import './globals.css'
 import PageLoader from '../components/PageLoader'
 import ScrollProgress from '../components/ScrollProgress'
+import CookieConsent from '../components/CookieConsent'
+import BackToTop from '../components/BackToTop'
 
 export const metadata = {
-  title: 'KNAPVÆRK',
-  description: 'Knapværk – eksklusivt modebrand med håndlavede værker af høj kvalitet. Oplev udvalgte værker og håndværk her.',
+  title: 'KNAPVÆRK | Håndlavede knapper',
+  description: 'KNAPVÆRK er et værksted, der arbejder altovervejende i træ. Alle knapper begynder og slutter ved materialets struktur, styrker og begrænsninger. Arbejdet udføres med traditionelle metoder.',
   keywords: 'Knapværk, modebrand, håndlavede knapper, design, eksklusivt',
   authors: [{ name: 'Knapværk ApS' }],
   manifest: '/assets/icons/site.webmanifest',
@@ -21,7 +23,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'KNAPVÆRK',
-    description: 'Oplev Knapværks udvalgte værker og håndværk. Luksusdesign med æstetik og kvalitet i fokus.',
+    description: 'KNAPVÆRK er et værksted, der arbejder altovervejende i træ. Håndlavede knapper med traditionelle metoder.',
     type: 'website',
     url: 'https://www.knapvaerk.com',
   },
@@ -33,6 +35,8 @@ export default function RootLayout({ children }) {
       <body>
         <PageLoader />
         <ScrollProgress />
+        <CookieConsent />
+        <BackToTop />
         {children}
       </body>
     </html>

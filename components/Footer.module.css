@@ -1,9 +1,8 @@
 .footer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   font-family: var(--font-display);
   font-size: 0.9rem;
   color: var(--text-secondary);
@@ -16,7 +15,6 @@
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInFooter 0.8s ease-out 0.4s forwards;
-  gap: 2rem;
 }
 
 .contentWrapper {
@@ -49,12 +47,33 @@
   opacity: 0.8;
 }
 
-.backToTop {
+.instagram {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.instagram:hover {
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.instagram:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+.backToTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
   border: 1px solid var(--border-light);
   border-radius: 50%;
   background: white;
@@ -71,12 +90,15 @@
 }
 
 .backToTop a {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .backToTop:hover {
@@ -94,14 +116,6 @@
   outline-offset: 2px;
 }
 
-.footerYear {
-  font-size: 0.85rem;
-  color: var(--text-tertiary);
-  letter-spacing: 0.02em;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.03);
-  width: 100%;
-}
 
 @keyframes fadeInFooter {
   to {
@@ -114,7 +128,6 @@
 @media(max-width: 768px) {
   .footer {
     padding: 2rem 1.5rem;
-    gap: 1.5rem;
   }
 
   .contentWrapper {
@@ -127,16 +140,17 @@
     text-align: center;
   }
 
+  .footerLine2 {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
   .backToTop {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 3rem;
+    height: 3rem;
   }
 
   .backToTop a {
-    font-size: 0.9rem;
-  }
-
-  .footerYear {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 }

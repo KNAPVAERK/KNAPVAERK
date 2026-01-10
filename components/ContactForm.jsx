@@ -156,11 +156,10 @@ export default function ContactForm() {
   }
 
   return (
-    <section className={`${styles.section} ${styles.subtleBg}`} id="contact" data-section="04">
+    <section className={`${styles.section} ${styles.subtleBg}`} id="contact">
       <div className={styles.textBlock}>
-        <div className={styles.sectionNumber}>04</div>
         <h2>Kontakt</h2>
-        <p>Send en besked. Jeg vender tilbage hurtigst muligt.</p>
+        <p>For samarbejder, prislister eller personlig rådgivning — skriv til os.</p>
       </div>
 
       <div className={styles.formContainer}>
@@ -255,9 +254,9 @@ export default function ContactForm() {
               disabled={loading || !isFormValid}
               onClick={createRipple}
               aria-busy={loading}
-              aria-label={loading ? "Sender besked..." : !isFormValid ? "Udfyld alle felter for at sende" : "Send besked"}
+              aria-label={loading ? "Sender forespørgsel..." : !isFormValid ? "Udfyld alle felter for at sende" : "Send forespørgsel"}
             >
-              <span className={styles.btnText}>Send</span>
+              <span className={styles.btnText}>Send forespørgsel</span>
               <span className={styles.btnLoader} aria-hidden="true"></span>
             </button>
 

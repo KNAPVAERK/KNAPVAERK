@@ -176,42 +176,45 @@
     justify-content: center;
   }
 
-  /* Burger Button */
-  .burgerButton {
+  /* Plus Button */
+  .plusButton {
     background: none;
     border: none;
     padding: 0.5rem;
+    width: 32px;
+    height: 32px;
     display: flex;
-    flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 103;
     transition: transform 0.3s var(--easing-smooth);
+    position: relative;
   }
 
-  .burgerButton:active {
+  .plusButton:active {
     transform: scale(0.95);
   }
 
-  .burgerLine {
-    width: 24px;
-    height: 2px;
+  .plusLine {
+    position: absolute;
+    width: 20px;
+    height: 1.5px;
     background: var(--text-primary);
-    transition: all 0.3s var(--easing-smooth);
-    transform-origin: center;
+    transition: transform 0.3s var(--easing-smooth);
   }
 
-  .burgerLine.open:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+  .plusLine:nth-child(2) {
+    transform: rotate(90deg);
   }
 
-  .burgerLine.open:nth-child(2) {
-    opacity: 0;
-    transform: scaleX(0);
+  /* Rotate to X when open */
+  .plusButton.open .plusLine:nth-child(1) {
+    transform: rotate(45deg);
   }
 
-  .burgerLine.open:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+  .plusButton.open .plusLine:nth-child(2) {
+    transform: rotate(-45deg);
   }
 
   /* Mobile Logo - Centered - Always visible */
@@ -265,8 +268,22 @@
     transform: translateX(100%);
     transition: transform 0.4s var(--easing-entrance);
     z-index: 102;
-    padding: 5rem 2rem 2rem;
+    padding: 2rem 2rem 2rem;
     overflow-y: auto;
+  }
+
+  .mobileMenuHeader {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .mobileMenuLogo {
+    height: 16px;
+    width: auto;
+    opacity: 0.8;
   }
 
   .mobileMenu.open {
@@ -403,15 +420,15 @@
 }
 
 @media (prefers-reduced-motion: reduce) and (max-width: 768px) {
-  .burgerButton {
+  .plusButton {
     transition: none;
   }
 
-  .burgerButton:active {
+  .plusButton:active {
     transform: none;
   }
 
-  .burgerLine {
+  .plusLine {
     transition: all 0.01ms;
   }
 

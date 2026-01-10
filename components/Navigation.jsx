@@ -99,14 +99,13 @@ export default function Navigation() {
         {/* Mobile Layout */}
         <div className={styles.mobileNav}>
           <button
-            className={styles.burgerButton}
+            className={`${styles.plusButton} ${mobileMenuOpen ? styles.open : ''}`}
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
           >
-            <span className={`${styles.burgerLine} ${mobileMenuOpen ? styles.open : ''}`}></span>
-            <span className={`${styles.burgerLine} ${mobileMenuOpen ? styles.open : ''}`}></span>
-            <span className={`${styles.burgerLine} ${mobileMenuOpen ? styles.open : ''}`}></span>
+            <span className={styles.plusLine}></span>
+            <span className={styles.plusLine}></span>
           </button>
 
           <div
@@ -128,20 +127,11 @@ export default function Navigation() {
         <ul className={`${styles.navList} ${styles.desktop}`}>
           <li>
             <a
-              href="#hero"
-              onClick={(e) => scrollToSection(e, 'hero')}
-              className={activeSection === 'hero' ? styles.active : ''}
-            >
-              START
-            </a>
-          </li>
-          <li>
-            <a
               href="#works"
               onClick={(e) => scrollToSection(e, 'works')}
               className={activeSection === 'works' ? styles.active : ''}
             >
-              KOLLEKTION
+              SORTIMENT
             </a>
           </li>
           <li>
@@ -177,24 +167,21 @@ export default function Navigation() {
       {/* Mobile Menu Drawer */}
       <div className={`${styles.mobileMenuOverlay} ${mobileMenuOpen ? styles.open : ''}`} onClick={toggleMobileMenu}></div>
       <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ''}`}>
+        <div className={styles.mobileMenuHeader}>
+          <img
+            src="/assets/images/knapvaerk-nav-logo.svg"
+            alt="KNAPVÆRK"
+            className={styles.mobileMenuLogo}
+          />
+        </div>
         <ul className={styles.mobileMenuList}>
-          <li>
-            <a
-              href="#hero"
-              onClick={(e) => scrollToSection(e, 'hero')}
-              className={activeSection === 'hero' ? styles.active : ''}
-            >
-              <span className={styles.mobileMenuText}>START</span>
-              {activeSection === 'hero' && <span className={styles.activeIndicator}></span>}
-            </a>
-          </li>
           <li>
             <a
               href="#works"
               onClick={(e) => scrollToSection(e, 'works')}
               className={activeSection === 'works' ? styles.active : ''}
             >
-              <span className={styles.mobileMenuText}>KOLLEKTION</span>
+              <span className={styles.mobileMenuText}>SORTIMENT</span>
               {activeSection === 'works' && <span className={styles.activeIndicator}></span>}
             </a>
           </li>

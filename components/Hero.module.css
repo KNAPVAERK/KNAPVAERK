@@ -1,11 +1,30 @@
 .hero {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(180deg, rgba(247,246,244,1) 0%, rgba(240,239,237,1) 100%);
+  background:
+    linear-gradient(180deg, rgba(247,246,244,0.75) 0%, rgba(240,239,237,0.70) 60%, rgba(247,246,244,0.95) 100%),
+    url('/assets/images/BGHero.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
   margin-bottom: 2.5rem;
+  position: relative;
+}
+
+/* Soft fade to next section */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(247,246,244,1) 100%);
+  pointer-events: none;
 }
 
 .logoContainer {
@@ -45,16 +64,95 @@
   50% { opacity: 0.96; transform: scale(1.008); }
 }
 
+/* CTA Button */
+.cta {
+  position: absolute;
+  bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-secondary);
+  opacity: 0;
+  animation: ctaReveal 0.8s ease-out 1.8s forwards;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cta:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.ctaText {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.ctaArrow {
+  font-size: 1.25rem;
+  animation: ctaBounce 2s ease-in-out 2.5s infinite;
+}
+
+@keyframes ctaReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ctaBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
 /* Mobile Hero Optimization - Luxury Refinement */
 @media(max-width: 768px) {
   .hero {
-    min-height: 80vh;
-    height: auto;
-    padding-top: 66px;
+    height: 100vh;
+    padding: 0;
+    padding-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center center;
   }
 
   .logoContainer {
     width: 80vw;
+    margin: 0 auto;
+  }
+
+  .logo {
+    animation:
+      luxuryRevealMobile 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+      luxuryBreathe 3s ease-in-out 1.2s infinite;
+  }
+}
+
+@keyframes luxuryRevealMobile {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.96) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
   }
 }
 

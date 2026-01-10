@@ -19,15 +19,32 @@ export default function GallerySection({
   const lightboxRef = useRef(null)
   const closeButtonRef = useRef(null)
   const lastFocusedElement = useRef(null)
+  const scrollPosition = useRef(0)
 
   const openLightbox = (image, index) => {
     lastFocusedElement.current = document.activeElement
+
+    // Store current scroll position
+    scrollPosition.current = window.pageYOffset
+
+    // Prevent scroll on body
     document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollPosition.current}px`
+    document.body.style.width = '100%'
+
     setLightboxImage({ ...image, index })
   }
 
   const closeLightbox = () => {
-    document.body.style.overflow = 'unset'
+    // Restore scroll position
+    document.body.style.overflow = ''
+    document.body.style.position = ''
+    document.body.style.top = ''
+    document.body.style.width = ''
+
+    window.scrollTo(0, scrollPosition.current)
+
     setLightboxImage(null)
 
     if (lastFocusedElement.current) {
@@ -93,10 +110,13 @@ export default function GallerySection({
     }
   }, [])
 
-  // Cleanup body overflow on unmount
+  // Cleanup body styles on unmount
   useEffect(() => {
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
     }
   }, [lightboxImage])
 
@@ -151,7 +171,6 @@ export default function GallerySection({
       ref={sectionRef}
       className={`${styles.section} ${visible ? styles.visible : ''}`}
       id={id}
-      data-section={sectionNumber}
     >
       <div className={styles.container}>
         <div className={styles.content}>
@@ -172,7 +191,7 @@ export default function GallerySection({
               <div key={index} className={styles.imageWrapper}>
                 <Image
                   onClick={() => openLightbox(image, index)}
-                  src={urlFor(image.asset).width(1000).url()}
+                  src={urlFor(image).width(1000).auto('format').url()}
                   alt={image.alt || `${title} billede ${index + 1}`}
                   width={1000}
                   height={1333}
@@ -213,7 +232,7 @@ export default function GallerySection({
         >
           <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
             <Image
-              src={urlFor(lightboxImage.asset).width(2000).url()}
+              src={urlFor(lightboxImage).width(2000).auto('format').url()}
               alt={lightboxImage.alt || `${title} billede ${lightboxImage.index + 1}`}
               width={2000}
               height={2667}

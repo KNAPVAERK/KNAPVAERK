@@ -34,7 +34,7 @@ export default function AboutSection({ data }) {
 
   // Default placeholder data
   const title = data?.title || 'Om KNAPVÆRK'
-  const content = data?.content || 'KNAPVÆRK er et eksklusivt brand født fra en passion for håndværk. Vi skaber værker af ekstraordinær kvalitet – fra små knapper til fulde sammenføjninger – hvor hver detalje fortæller en historie om dedikation og mesterlighed.\n\nVores filosofi bygger på en dyb respekt for materialet, for processen og for det håndværk, som moderne produktion har glemt. Vi arbejder langsomt, med traditionelle metoder og primært håndværktøj. Hvert stykke træ udvælges enkeltvis – vi ser efter kvalitet, farvetone og fiber. Intet er automatiseret. Intet er hastværk.\n\nDe små elementer gør den store forskel. Ægte kvalitet ligger ikke i det, man ser på afstand, men i hver syning, hver kurve, hver finishflade. Det ligger i håndens indtryk, i den tålmodighed, der kræves, og i den passion, der udsender sig fra arbejdet.\n\nVores værker er til dem, der kan mærke forskellen. Til dem, der værdsætter autentisitet over mængde, tradition over trends, og varige ting over engangsting.'
+  const content = data?.content || 'KNAPVÆRK er et værksted, der arbejder altovervejende i træ. Alle knapper begynder og slutter ved materialets struktur, styrker og begrænsninger.\n\nArbejdet udføres med traditionelle metoder. Primært håndværktøj. Træet udvælges nøje og bearbejdes med stadig opmærksomhed på åretegning, densitet og overflade. Præcision opbygges gennem gentagelse og håndelag.\n\nTræsorter som ibenholt, ahorn og valnød vælges for deres egenskaber og måde at ældes på. Formgivningen er enkel og altid baseret lige dele på funktion og æstetik.'
   const image = data?.image
 
   return (
@@ -45,7 +45,6 @@ export default function AboutSection({ data }) {
     >
       <div className={styles.container}>
         <div className={styles.content}>
-          <div className={styles.sectionNumber}>03</div>
           <h2 className={styles.title}>{title}</h2>
           <div className={styles.text}>
             {content.split('\n\n').map((paragraph, index) => (

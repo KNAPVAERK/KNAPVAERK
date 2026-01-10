@@ -22,9 +22,17 @@ export default function Hero({ logoSrc = '/assets/images/logo1.svg' }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const scrollToWorks = (e) => {
+    e.preventDefault()
+    const section = document.getElementById('works')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section className={styles.hero} id="hero">
-      <h1 className="visually-hidden">Knapværk – Logo og brand</h1>
+      <h1 className="visually-hidden">Knapværk – Håndlavede knapper af ekstraordinær kvalitet</h1>
       <div className={styles.logoContainer} ref={logoRef}>
         <img
           src={logoSrc}
@@ -34,6 +42,16 @@ export default function Hero({ logoSrc = '/assets/images/logo1.svg' }) {
           className={styles.logo}
         />
       </div>
+
+      <a
+        href="#works"
+        onClick={scrollToWorks}
+        className={styles.cta}
+        aria-label="Udforsk vores håndlavede knapper"
+      >
+        <span className={styles.ctaText}>Udforsk vores håndlavede knapper</span>
+        <span className={styles.ctaArrow}>↓</span>
+      </a>
     </section>
   )
 }
