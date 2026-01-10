@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import styles from './ContactForm.module.css'
 
-export default function ContactForm() {
+export default function ContactForm({ data }) {
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState({ type: '', message: '' })
   const [formVisible, setFormVisible] = useState(true)
@@ -12,6 +12,15 @@ export default function ContactForm() {
     subject: { valid: null, message: '' },
     message: { valid: null, message: '' }
   })
+
+  // Content from Sanity with fallbacks
+  const title = data?.title || 'Kontakt'
+  const subtitle = data?.subtitle || 'For samarbejder, prislister eller personlig rådgivning — skriv til os.'
+  const successTitle = data?.successTitle || 'Tak for din besked'
+  const successMessage = data?.successMessage || 'Jeg læser alt, hvad I skriver. Du hører fra mig inden længe.'
+  const emailFallbackText = data?.emailFallbackText || 'Foretrækkes direkte email? Skriv til'
+  const contactEmail = data?.contactEmail || 'info@knapvaerk.com'
+  const buttonText = data?.buttonText || 'Send forespørgsel'
 
   // Check if form is valid (all fields have valid: true)
   const isFormValid = validation.email.valid === true &&

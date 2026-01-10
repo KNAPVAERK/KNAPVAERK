@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
+import { urlFor } from '../lib/sanity'
 import styles from './AboutSection.module.css'
 
 export default function AboutSection({ data }) {
@@ -55,7 +56,7 @@ export default function AboutSection({ data }) {
         <div className={styles.imageContainer}>
           {image ? (
             <Image
-              src={image}
+              src={urlFor(image).width(800).height(1000).url()}
               alt={title}
               width={800}
               height={1000}

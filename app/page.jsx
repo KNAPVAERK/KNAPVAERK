@@ -4,7 +4,7 @@ import GallerySection from '../components/GallerySection'
 import AboutSection from '../components/AboutSection'
 import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
-import { getGallerySections, getSiteSettings, getPageContent } from '../lib/sanity'
+import { getGallerySections, getSiteSettings, getPageContent, getContactSection } from '../lib/sanity'
 import { urlFor } from '../lib/sanity'
 
 // This is a Server Component - data fetching happens at build time
@@ -14,6 +14,7 @@ export default async function Home() {
   const gallerySections = await getGallerySections().catch(() => [])
   const siteSettings = await getSiteSettings().catch(() => null)
   const aboutContent = await getPageContent('om').catch(() => null)
+  const contactContent = await getContactSection().catch(() => null)
 
   // Hardcoded fallback data for initial deployment
   const worksSection = gallerySections.find(s => s.slug?.current === 'works') || {
@@ -59,11 +60,11 @@ export default async function Home() {
             content: aboutContent.body?.map(block =>
               block.children?.map(child => child.text).join('')
             ).join('\n\n') || aboutContent.subheading,
-            image: aboutContent.image ? urlFor(aboutContent.image).width(800).height(1000).url() : null
+            image: aboutContent.image || null
           } : null}
         />
 
-        <ContactForm />
+        <ContactForm data={contactContent} />
       </div>
 
       <Footer 
