@@ -1,15 +1,32 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
+// Localized error messages
+const errorMessages = {
+  da: {
+    missingFields: 'Alle felter skal udfyldes',
+    invalidEmail: 'Ugyldig email adresse',
+    serverError: 'Der opstod en fejl. Prøv igen senere.'
+  },
+  en: {
+    missingFields: 'All fields are required',
+    invalidEmail: 'Invalid email address',
+    serverError: 'Something went wrong. Please try again later.'
+  }
+}
+
 export async function POST(request) {
   try {
     const body = await request.json()
-    const { email, subject, message } = body
+    const { email, subject, message, locale = 'da' } = body
+
+    // Get error messages for current locale (fallback to Danish)
+    const t = errorMessages[locale] || errorMessages.da
 
     // Basic validation
     if (!email || !subject || !message) {
       return NextResponse.json(
-        { error: 'Alle felter skal udfyldes' },
+        { error: t.missingFields },
         { status: 400 }
       )
     }
@@ -18,7 +35,7 @@ export async function POST(request) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Ugyldig email adresse' },
+        { error: t.invalidEmail },
         { status: 400 }
       )
     }
@@ -61,8 +78,9 @@ ${message}
 
   } catch (error) {
     console.error('Email send error:', error)
+    // Default to Danish for server errors (locale may not be available if request parsing failed)
     return NextResponse.json(
-      { error: 'Der opstod en fejl. Prøv igen senere.' },
+      { error: errorMessages.da.serverError },
       { status: 500 }
     )
   }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { urlFor } from '../lib/sanity'
 import styles from './GallerySection.module.css'
 
@@ -13,6 +14,7 @@ export default function GallerySection({
   images = [],
   sectionNumber
 }) {
+  const t = useTranslations('gallery')
   const [visible, setVisible] = useState(false)
   const [lightboxImage, setLightboxImage] = useState(null)
   const sectionRef = useRef(null)
@@ -215,7 +217,7 @@ export default function GallerySection({
             ))
           ) : (
             <div className={styles.imagePlaceholder}>
-              <span>Billeder vil blive vist her når de er tilføjet i Sanity CMS</span>
+              <span>{t('placeholder')}</span>
             </div>
           )}
         </div>
@@ -244,7 +246,7 @@ export default function GallerySection({
               ref={closeButtonRef}
               className={styles.closeButton}
               onClick={closeLightbox}
-              aria-label="Luk forstørret visning (ESC)"
+              aria-label={t('closeLightbox')}
             >
               ✕
             </button>
@@ -255,14 +257,14 @@ export default function GallerySection({
             {images && images.length > 1 && (
               <div className={styles.navigationHint} aria-hidden="true">
                 <span className={styles.hintText}>
-                  ← → Navigér mellem billeder
+                  {t('lightboxNav')}
                 </span>
               </div>
             )}
 
             <div className={styles.escapeHint} aria-hidden="true">
               <span className={styles.hintText}>
-                ESC for at lukke
+                {t('lightboxClose')}
               </span>
             </div>
           </div>

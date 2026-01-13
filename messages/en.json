@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "sortiment": "COLLECTION",
+    "haandvaerk": "CRAFT",
+    "om": "ABOUT",
+    "kontakt": "ENQUIRIES",
+    "mainNav": "Main navigation",
+    "scrollToTop": "Scroll to top",
+    "toggleMenu": "Toggle menu"
+  },
+  "hero": {
+    "cta": "Explore the collection",
+    "title": "KNAPVÆRK – Handmade buttons"
+  },
+  "contact": {
+    "title": "Enquiries",
+    "subtitle": "For collaborations, price lists, or personal guidance, get in touch.",
+    "emailLabel": "Email",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message",
+    "submitButton": "Submit Enquiry",
+    "emailError": "Please enter a valid email",
+    "subjectError": "Subject must be at least 3 characters",
+    "messageError": "Message must be at least 10 characters",
+    "successTitle": "Thank you for your message",
+    "successMessage": "I read everything you write. You will hear from me soon.",
+    "emailFallback": "Prefer to email directly? Write to",
+    "spamError": "Spam detected. Please try again.",
+    "genericError": "Something went wrong. Please try again."
+  },
+  "gallery": {
+    "placeholder": "Images will be shown here when added in Sanity CMS",
+    "imagePlaceholder": "Image coming soon",
+    "lightboxNav": "← → Navigate between images",
+    "lightboxClose": "ESC to close",
+    "lightboxLabel": "Enlarged view of {title} image {current} of {total}",
+    "closeLightbox": "Close enlarged view (ESC)"
+  },
+  "about": {
+    "title": "About KNAPVÆRK",
+    "imagePlaceholder": "Image coming soon"
+  },
+  "cookie": {
+    "message": "We don't use cookies or tracking."
+  },
+  "footer": {
+    "followInstagram": "Follow us on Instagram",
+    "backToTop": "Back to top"
+  },
+  "common": {
+    "backToTop": "Back to top"
+  },
+  "languageSwitcher": {
+    "switchToEnglish": "Switch to English",
+    "switchToDanish": "Switch to Danish"
+  }
+}

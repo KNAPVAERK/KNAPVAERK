@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import styles from './BackToTop.module.css'
 
 export default function BackToTop() {
+  const t = useTranslations('common')
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -30,8 +32,8 @@ export default function BackToTop() {
     <button
       className={`${styles.backToTop} ${visible ? styles.visible : ''}`}
       onClick={scrollToTop}
-      aria-label="Tilbage til toppen"
-      title="Tilbage til toppen"
+      aria-label={t('backToTop')}
+      title={t('backToTop')}
     >
       <span className={styles.arrow}>↑</span>
     </button>

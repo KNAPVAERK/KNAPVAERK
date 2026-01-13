@@ -32,6 +32,23 @@ export const schema = {
           type: 'text',
           rows: 3,
         },
+        // English translations
+        {
+          name: 'title_en',
+          title: 'Title (English)',
+          type: 'string',
+        },
+        {
+          name: 'subtitle_en',
+          title: 'Subtitle (English)',
+          type: 'string',
+        },
+        {
+          name: 'metaText_en',
+          title: 'Meta Text (English)',
+          type: 'text',
+          rows: 3,
+        },
         {
           name: 'order',
           title: 'Display Order',
@@ -77,6 +94,11 @@ export const schema = {
           validation: (Rule: any) => Rule.required(),
         },
         {
+          name: 'name_en',
+          title: 'Product Name (English)',
+          type: 'string',
+        },
+        {
           name: 'slug',
           title: 'Slug',
           type: 'slug',
@@ -93,6 +115,12 @@ export const schema = {
           rows: 4,
         },
         {
+          name: 'description_en',
+          title: 'Description (English)',
+          type: 'text',
+          rows: 4,
+        },
+        {
           name: 'images',
           title: 'Product Images',
           type: 'array',
@@ -105,8 +133,18 @@ export const schema = {
           type: 'string',
         },
         {
+          name: 'material_en',
+          title: 'Material (English)',
+          type: 'string',
+        },
+        {
           name: 'dimensions',
           title: 'Dimensions',
+          type: 'string',
+        },
+        {
+          name: 'dimensions_en',
+          title: 'Dimensions (English)',
           type: 'string',
         },
         {
@@ -147,6 +185,12 @@ export const schema = {
           rows: 3,
         },
         {
+          name: 'description_en',
+          title: 'Site Description (English)',
+          type: 'text',
+          rows: 3,
+        },
+        {
           name: 'logo',
           title: 'Site Logo',
           type: 'image',
@@ -163,6 +207,12 @@ export const schema = {
         {
           name: 'footerText',
           title: 'Footer Text',
+          type: 'text',
+          rows: 2,
+        },
+        {
+          name: 'footerText_en',
+          title: 'Footer Text (English)',
           type: 'text',
           rows: 2,
         },
@@ -206,13 +256,33 @@ export const schema = {
           type: 'string',
         },
         {
+          name: 'heading_en',
+          title: 'Heading (English)',
+          type: 'string',
+        },
+        {
           name: 'subheading',
           title: 'Subheading',
           type: 'string',
         },
         {
+          name: 'subheading_en',
+          title: 'Subheading (English)',
+          type: 'string',
+        },
+        {
           name: 'body',
           title: 'Body',
+          type: 'array',
+          of: [
+            {
+              type: 'block',
+            },
+          ],
+        },
+        {
+          name: 'body_en',
+          title: 'Body (English)',
           type: 'array',
           of: [
             {
@@ -243,6 +313,11 @@ export const schema = {
           initialValue: 'Kontakt',
         },
         {
+          name: 'title_en',
+          title: 'Titel (English)',
+          type: 'string',
+        },
+        {
           name: 'subtitle',
           title: 'Undertekst',
           type: 'text',
@@ -251,11 +326,22 @@ export const schema = {
           initialValue: 'For samarbejder, prislister eller personlig rådgivning — skriv til os.',
         },
         {
+          name: 'subtitle_en',
+          title: 'Undertekst (English)',
+          type: 'text',
+          rows: 2,
+        },
+        {
           name: 'successTitle',
           title: 'Success Titel',
           type: 'string',
           description: 'Titel der vises efter formularen er sendt',
           initialValue: 'Tak for din besked',
+        },
+        {
+          name: 'successTitle_en',
+          title: 'Success Titel (English)',
+          type: 'string',
         },
         {
           name: 'successMessage',
@@ -266,11 +352,22 @@ export const schema = {
           initialValue: 'Jeg læser alt, hvad I skriver. Du hører fra mig inden længe.',
         },
         {
+          name: 'successMessage_en',
+          title: 'Success Besked (English)',
+          type: 'text',
+          rows: 2,
+        },
+        {
           name: 'emailFallbackText',
           title: 'Email Fallback Tekst',
           type: 'string',
           description: 'Tekst med direkte email link',
           initialValue: 'Foretrækkes direkte email? Skriv til',
+        },
+        {
+          name: 'emailFallbackText_en',
+          title: 'Email Fallback Tekst (English)',
+          type: 'string',
         },
         {
           name: 'contactEmail',
@@ -284,6 +381,11 @@ export const schema = {
           title: 'Knap Tekst',
           type: 'string',
           initialValue: 'Send forespørgsel',
+        },
+        {
+          name: 'buttonText_en',
+          title: 'Knap Tekst (English)',
+          type: 'string',
         },
       ],
     },

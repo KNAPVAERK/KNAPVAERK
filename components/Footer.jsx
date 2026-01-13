@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import styles from './Footer.module.css'
 
 export default function Footer({
@@ -8,6 +9,7 @@ export default function Footer({
   cvrNumber = "40292195",
   address = "Stavrevej 512, 5300 Kerteminde"
 }) {
+  const t = useTranslations('footer')
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -39,7 +41,7 @@ export default function Footer({
           target="_blank"
           rel="noopener noreferrer"
           className={styles.instagram}
-          aria-label="Følg os på Instagram"
+          aria-label={t('followInstagram')}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -52,8 +54,8 @@ export default function Footer({
           <a
             href="#hero"
             onClick={scrollToTop}
-            aria-label="Tilbage til top"
-            title="Tilbage til top"
+            aria-label={t('backToTop')}
+            title={t('backToTop')}
           >
             ↑
           </a>

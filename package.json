@@ -15,6 +15,7 @@
     "@sanity/vision": "^4.22.0",
     "framer-motion": "^12.23.26",
     "next": "^14.2.18",
+    "next-intl": "^4.7.0",
     "next-sanity": "^9.4.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

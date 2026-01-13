@@ -1,9 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 import styles from './ContactForm.module.css'
 
 export default function ContactForm({ data }) {
+  const t = useTranslations('contact')
+  const locale = useLocale()
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState({ type: '', message: '' })
   const [formVisible, setFormVisible] = useState(true)
@@ -12,15 +15,21 @@ export default function ContactForm({ data }) {
     subject: { valid: null, message: '' },
     message: { valid: null, message: '' }
   })
+  // Track which fields have been touched (blurred) - only validate after first blur
+  const [touched, setTouched] = useState({
+    email: false,
+    subject: false,
+    message: false
+  })
 
-  // Content from Sanity with fallbacks
-  const title = data?.title || 'Kontakt'
-  const subtitle = data?.subtitle || 'For samarbejder, prislister eller personlig rådgivning — skriv til os.'
-  const successTitle = data?.successTitle || 'Tak for din besked'
-  const successMessage = data?.successMessage || 'Jeg læser alt, hvad I skriver. Du hører fra mig inden længe.'
-  const emailFallbackText = data?.emailFallbackText || 'Foretrækkes direkte email? Skriv til'
+  // Content from Sanity with fallbacks (using translations)
+  const title = data?.title || t('title')
+  const subtitle = data?.subtitle || t('subtitle')
+  const successTitle = data?.successTitle || t('successTitle')
+  const successMessage = data?.successMessage || t('successMessage')
+  const emailFallbackText = data?.emailFallbackText || t('emailFallback')
   const contactEmail = data?.contactEmail || 'info@knapvaerk.com'
-  const buttonText = data?.buttonText || 'Send forespørgsel'
+  const buttonText = data?.buttonText || t('submitButton')
 
   // Check if form is valid (all fields have valid: true)
   const isFormValid = validation.email.valid === true &&
@@ -32,64 +41,57 @@ export default function ContactForm({ data }) {
     return re.test(email)
   }
 
+  // Validation logic extracted for reuse
+  const validateField = (field, value) => {
+    if (field === 'email') {
+      if (value.length === 0) return { valid: null, message: '' }
+      if (validateEmail(value)) return { valid: true, message: '' }
+      return { valid: false, message: t('emailError') }
+    }
+    if (field === 'subject') {
+      if (value.length === 0) return { valid: null, message: '' }
+      if (value.length >= 3) return { valid: true, message: '' }
+      return { valid: false, message: t('subjectError') }
+    }
+    if (field === 'message') {
+      if (value.length === 0) return { valid: null, message: '' }
+      if (value.length >= 10) return { valid: true, message: '' }
+      return { valid: false, message: t('messageError') }
+    }
+    return { valid: null, message: '' }
+  }
+
+  // onChange: Only validate if field has been touched OR value is valid (allow positive feedback)
   const handleEmailChange = (e) => {
-    const email = e.target.value
-    if (email.length === 0) {
-      setValidation(prev => ({
-        ...prev,
-        email: { valid: null, message: '' }
-      }))
-    } else if (validateEmail(email)) {
-      setValidation(prev => ({
-        ...prev,
-        email: { valid: true, message: '' }
-      }))
-    } else {
-      setValidation(prev => ({
-        ...prev,
-        email: { valid: false, message: 'Venligst indtast en gyldig email' }
-      }))
+    const value = e.target.value
+    const result = validateField('email', value)
+    // Show validation only if touched, or if valid (positive feedback while typing)
+    if (touched.email || result.valid === true) {
+      setValidation(prev => ({ ...prev, email: result }))
     }
   }
 
   const handleSubjectChange = (e) => {
-    const subject = e.target.value
-    if (subject.length === 0) {
-      setValidation(prev => ({
-        ...prev,
-        subject: { valid: null, message: '' }
-      }))
-    } else if (subject.length >= 3) {
-      setValidation(prev => ({
-        ...prev,
-        subject: { valid: true, message: '' }
-      }))
-    } else {
-      setValidation(prev => ({
-        ...prev,
-        subject: { valid: false, message: 'Emne skal være mindst 3 tegn' }
-      }))
+    const value = e.target.value
+    const result = validateField('subject', value)
+    if (touched.subject || result.valid === true) {
+      setValidation(prev => ({ ...prev, subject: result }))
     }
   }
 
   const handleMessageChange = (e) => {
-    const message = e.target.value
-    if (message.length === 0) {
-      setValidation(prev => ({
-        ...prev,
-        message: { valid: null, message: '' }
-      }))
-    } else if (message.length >= 10) {
-      setValidation(prev => ({
-        ...prev,
-        message: { valid: true, message: '' }
-      }))
-    } else {
-      setValidation(prev => ({
-        ...prev,
-        message: { valid: false, message: 'Besked skal være mindst 10 tegn' }
-      }))
+    const value = e.target.value
+    const result = validateField('message', value)
+    if (touched.message || result.valid === true) {
+      setValidation(prev => ({ ...prev, message: result }))
     }
+  }
+
+  // onBlur: Mark field as touched and validate
+  const handleBlur = (field) => (e) => {
+    setTouched(prev => ({ ...prev, [field]: true }))
+    const result = validateField(field, e.target.value)
+    setValidation(prev => ({ ...prev, [field]: result }))
   }
 
   const createRipple = (e) => {
@@ -122,16 +124,17 @@ export default function ContactForm({ data }) {
       setLoading(false)
       setStatus({
         type: 'error',
-        message: 'Spam detected. Please try again.'
+        message: t('spamError')
       })
       return
     }
 
-    // Convert FormData to JSON
-    const data = {
+    // Convert FormData to JSON (include locale for localized API responses)
+    const formValues = {
       email: formData.get('email'),
       subject: formData.get('subject'),
-      message: formData.get('message')
+      message: formData.get('message'),
+      locale
     }
 
     try {
@@ -140,7 +143,7 @@ export default function ContactForm({ data }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(formValues)
       })
 
       const result = await res.json()
@@ -149,7 +152,7 @@ export default function ContactForm({ data }) {
         setLoading(false)
         setStatus({
           type: 'success',
-          message: 'Tak for din besked.'
+          message: successTitle
         })
         setFormVisible(false)
       } else {
@@ -159,7 +162,7 @@ export default function ContactForm({ data }) {
       setLoading(false)
       setStatus({
         type: 'error',
-        message: error.message || 'Noget gik galt. Prøv igen.'
+        message: error.message || t('genericError')
       })
     }
   }
@@ -167,8 +170,8 @@ export default function ContactForm({ data }) {
   return (
     <section className={`${styles.section} ${styles.subtleBg}`} id="contact">
       <div className={styles.textBlock}>
-        <h2>Kontakt</h2>
-        <p>For samarbejder, prislister eller personlig rådgivning — skriv til os.</p>
+        <h2>{title}</h2>
+        <p>{subtitle}</p>
       </div>
 
       <div className={styles.formContainer}>
@@ -176,8 +179,8 @@ export default function ContactForm({ data }) {
           <div className={styles.successState}>
             <div className={styles.successIcon}></div>
             <div>
-              <h3 className={styles.successTitle}>Tak for din besked</h3>
-              <p className={styles.successText}>Jeg læser alt, hvad I skriver. Du hører fra mig inden længe.</p>
+              <h3 className={styles.successTitle}>{successTitle}</h3>
+              <p className={styles.successText}>{successMessage}</p>
             </div>
           </div>
         ) : (
@@ -197,13 +200,14 @@ export default function ContactForm({ data }) {
             />
 
             <div className={`${styles.formField} ${validation.email.valid === false ? styles.error : ''} ${validation.email.valid === true ? styles.valid : ''}`}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t('emailLabel')}</label>
               <input
                 id="email"
                 name="email"
                 type="email"
                 required
                 onChange={handleEmailChange}
+                onBlur={handleBlur('email')}
                 aria-describedby="email-error"
                 aria-invalid={validation.email.valid === false}
               />
@@ -218,12 +222,13 @@ export default function ContactForm({ data }) {
             </div>
 
             <div className={`${styles.formField} ${validation.subject.valid === false ? styles.error : ''} ${validation.subject.valid === true ? styles.valid : ''}`}>
-              <label htmlFor="subject">Emne</label>
+              <label htmlFor="subject">{t('subjectLabel')}</label>
               <input
                 id="subject"
                 name="subject"
                 type="text"
                 onChange={handleSubjectChange}
+                onBlur={handleBlur('subject')}
                 aria-describedby="subject-error"
                 aria-invalid={validation.subject.valid === false}
               />
@@ -238,12 +243,13 @@ export default function ContactForm({ data }) {
             </div>
 
             <div className={`${styles.formField} ${validation.message.valid === false ? styles.error : ''} ${validation.message.valid === true ? styles.valid : ''}`}>
-              <label htmlFor="message">Besked</label>
+              <label htmlFor="message">{t('messageLabel')}</label>
               <textarea
                 id="message"
                 name="message"
                 required
                 onChange={handleMessageChange}
+                onBlur={handleBlur('message')}
                 aria-describedby="message-error"
                 aria-invalid={validation.message.valid === false}
               />
@@ -263,9 +269,8 @@ export default function ContactForm({ data }) {
               disabled={loading || !isFormValid}
               onClick={createRipple}
               aria-busy={loading}
-              aria-label={loading ? "Sender forespørgsel..." : !isFormValid ? "Udfyld alle felter for at sende" : "Send forespørgsel"}
             >
-              <span className={styles.btnText}>Send forespørgsel</span>
+              <span className={styles.btnText}>{buttonText}</span>
               <span className={styles.btnLoader} aria-hidden="true"></span>
             </button>
 
@@ -280,7 +285,7 @@ export default function ContactForm({ data }) {
         {/* Email fallback text */}
         {formVisible && (
           <div className={styles.emailFallback}>
-            <p>Foretrækkes direkte email? Skriv til <a href="mailto:info@knapvaerk.com">info@knapvaerk.com</a></p>
+            <p>{emailFallbackText} <a href={`mailto:${contactEmail}`}>{contactEmail}</a></p>
           </div>
         )}
       </div>

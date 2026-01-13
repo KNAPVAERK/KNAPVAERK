@@ -17,68 +17,64 @@ export default function PageLoader() {
   }, [])
 
   useEffect(() => {
+    // Failsafe timeout - never wait more than 3 seconds
+    const failsafeTimer = setTimeout(() => {
+      setAssetsLoaded(true)
+    }, 3000)
+
     // Strategic Preloading: Critical assets for hero section
     const preloadAssets = async () => {
       const imageAssets = [
         '/assets/images/logo1.svg',
         '/assets/images/knapvaerk-nav-logo.svg',
+        '/assets/images/BGhero.jpg', // Hero background - critical for perceived performance
       ]
 
-      const fontAssets = [
-        '/fonts/LibreBaskerville-Regular.woff2',
-      ]
-
-      // Preload images
+      // Preload images with individual timeouts
       const imagePromises = imageAssets.map((src) => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
           const img = new window.Image()
-          img.onload = resolve
-          img.onerror = reject
+          const timeout = setTimeout(() => resolve(), 2000)
+          img.onload = () => {
+            clearTimeout(timeout)
+            resolve()
+          }
+          img.onerror = () => {
+            clearTimeout(timeout)
+            resolve() // Don't fail, just continue
+          }
           img.src = src
         })
       })
 
-      // Preload fonts
-      const fontPromises = fontAssets.map((src) => {
-        return new Promise((resolve) => {
-          const font = new FontFace('Libre Baskerville', `url(${src})`)
-          font.load()
-            .then(() => {
-              document.fonts.add(font)
-              resolve()
-            })
-            .catch(() => resolve()) // Don't fail on font errors
-        })
-      })
-
       try {
-        await Promise.all([...imagePromises, ...fontPromises])
-        // Wait 300ms for logo fade-in before marking as loaded
-        setTimeout(() => {
-          setAssetsLoaded(true)
-        }, 300)
+        await Promise.all(imagePromises)
+        clearTimeout(failsafeTimer)
+        setAssetsLoaded(true)
       } catch (error) {
         // Fallback: If assets fail to load, continue anyway
-        console.error('Asset preloading failed:', error)
+        clearTimeout(failsafeTimer)
         setAssetsLoaded(true)
       }
     }
 
     preloadAssets()
+
+    return () => clearTimeout(failsafeTimer)
   }, [])
 
   useEffect(() => {
     if (!assetsLoaded) return
 
-    // Once assets are loaded, elegant dissolve to site (800ms)
+    // Once assets are loaded, elegant dissolve to site (500ms)
     const fadeTimer = setTimeout(() => {
       setIsLoading(false)
-    }, 800)
+    }, 500)
 
-    // Remove from DOM after fade-out animation completes (800ms + 600ms fade)
+    // Remove from DOM after fade-out animation completes (500ms + 600ms fade)
     const removeTimer = setTimeout(() => {
       setShouldRender(false)
-    }, 1400)
+    }, 1100)
 
     return () => {
       clearTimeout(fadeTimer)

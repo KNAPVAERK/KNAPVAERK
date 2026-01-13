@@ -1,0 +1,57 @@
+{
+  "navigation": {
+    "sortiment": "SORTIMENT",
+    "haandvaerk": "HÅNDVÆRK",
+    "om": "OM",
+    "kontakt": "KONTAKT",
+    "mainNav": "Hovednavigation",
+    "scrollToTop": "Rul til toppen",
+    "toggleMenu": "Åbn/luk menu"
+  },
+  "hero": {
+    "cta": "Udforsk vores sortiment",
+    "title": "KNAPVÆRK – Håndlavede knapper"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "For samarbejder, prislister eller rådgivning — skriv til os.",
+    "emailLabel": "Email",
+    "subjectLabel": "Emne",
+    "messageLabel": "Besked",
+    "submitButton": "Send forespørgsel",
+    "emailError": "Venligst indtast en gyldig email",
+    "subjectError": "Emne skal være mindst 3 tegn",
+    "messageError": "Besked skal være mindst 10 tegn",
+    "successTitle": "Tak for din besked",
+    "successMessage": "Jeg læser alt, hvad I skriver. Du hører fra mig inden længe.",
+    "emailFallback": "Foretrækkes direkte email? Skriv til",
+    "spamError": "Spam detekteret. Prøv igen.",
+    "genericError": "Noget gik galt. Prøv igen."
+  },
+  "gallery": {
+    "placeholder": "Billeder vil blive vist her når de er tilføjet i Sanity CMS",
+    "imagePlaceholder": "Billede kommer her",
+    "lightboxNav": "← → Navigér mellem billeder",
+    "lightboxClose": "ESC for at lukke",
+    "lightboxLabel": "Forstørret visning af {title} billede {current} af {total}",
+    "closeLightbox": "Luk forstørret visning (ESC)"
+  },
+  "about": {
+    "title": "Om KNAPVÆRK",
+    "imagePlaceholder": "Billede kommer her"
+  },
+  "cookie": {
+    "message": "Vi bruger ingen cookies eller tracking."
+  },
+  "footer": {
+    "followInstagram": "Følg os på Instagram",
+    "backToTop": "Tilbage til top"
+  },
+  "common": {
+    "backToTop": "Tilbage til toppen"
+  },
+  "languageSwitcher": {
+    "switchToEnglish": "Switch to English",
+    "switchToDanish": "Skift til dansk"
+  }
+}

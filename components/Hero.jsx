@@ -1,9 +1,11 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import styles from './Hero.module.css'
 
 export default function Hero({ logoSrc = '/assets/images/logo1.svg' }) {
+  const t = useTranslations('hero')
   const logoRef = useRef(null)
 
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function Hero({ logoSrc = '/assets/images/logo1.svg' }) {
 
   return (
     <section className={styles.hero} id="hero">
-      <h1 className="visually-hidden">Knapværk – Håndlavede knapper af ekstraordinær kvalitet</h1>
+      <h1 className="visually-hidden">{t('title')}</h1>
       <div className={styles.logoContainer} ref={logoRef}>
         <img
           src={logoSrc}
@@ -47,9 +49,9 @@ export default function Hero({ logoSrc = '/assets/images/logo1.svg' }) {
         href="#works"
         onClick={scrollToWorks}
         className={styles.cta}
-        aria-label="Udforsk vores håndlavede knapper"
+        aria-label={t('cta')}
       >
-        <span className={styles.ctaText}>Udforsk vores håndlavede knapper</span>
+        <span className={styles.ctaText}>{t('cta')}</span>
         <span className={styles.ctaArrow}>↓</span>
       </a>
     </section>

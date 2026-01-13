@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import styles from './CookieConsent.module.css'
 
 export default function CookieConsent() {
+  const t = useTranslations('cookie')
   const [visible, setVisible] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
 
@@ -37,13 +39,13 @@ export default function CookieConsent() {
     >
       <div className={styles.banner}>
         <p id="cookie-description" className={styles.text}>
-          Vi bruger ingen cookies eller tracking.
+          {t('message')}
         </p>
 
         <button
           onClick={handleAccept}
           className={styles.button}
-          aria-label="Luk besked"
+          aria-label="OK"
         >
           OK
         </button>

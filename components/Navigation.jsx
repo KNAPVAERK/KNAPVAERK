@@ -1,9 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 import styles from './Navigation.module.css'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navigation() {
+  const t = useTranslations('navigation')
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
   const [showLogo, setShowLogo] = useState(false)
@@ -79,7 +82,7 @@ export default function Navigation() {
       <nav
         id="main-nav"
         className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}
-        aria-label="Hovednavigation"
+        aria-label={t('mainNav')}
       >
         {/* Desktop Logo */}
         <div
@@ -87,7 +90,7 @@ export default function Navigation() {
           onClick={scrollToTop}
           role="button"
           tabIndex={0}
-          aria-label="Scroll to top"
+          aria-label={t('scrollToTop')}
         >
           <img
             src="/assets/images/knapvaerk-nav-logo.svg"
@@ -101,7 +104,7 @@ export default function Navigation() {
           <button
             className={`${styles.plusButton} ${mobileMenuOpen ? styles.open : ''}`}
             onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
+            aria-label={t('toggleMenu')}
             aria-expanded={mobileMenuOpen}
           >
             <span className={styles.plusLine}></span>
@@ -113,7 +116,7 @@ export default function Navigation() {
             onClick={scrollToTop}
             role="button"
             tabIndex={0}
-            aria-label="Scroll to top"
+            aria-label={t('scrollToTop')}
           >
             <img
               src="/assets/images/knapvaerk-nav-logo.svg"
@@ -131,7 +134,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'works')}
               className={activeSection === 'works' ? styles.active : ''}
             >
-              SORTIMENT
+              {t('sortiment')}
             </a>
           </li>
           <li>
@@ -140,7 +143,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'craft')}
               className={activeSection === 'craft' ? styles.active : ''}
             >
-              HÅNDVÆRK
+              {t('haandvaerk')}
             </a>
           </li>
           <li>
@@ -149,7 +152,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'om')}
               className={activeSection === 'om' ? styles.active : ''}
             >
-              OM
+              {t('om')}
             </a>
           </li>
           <li>
@@ -158,8 +161,11 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'contact')}
               className={activeSection === 'contact' ? styles.active : ''}
             >
-              KONTAKT
+              {t('kontakt')}
             </a>
+          </li>
+          <li className={styles.languageSwitcher}>
+            <LanguageSwitcher />
           </li>
         </ul>
       </nav>
@@ -181,7 +187,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'works')}
               className={activeSection === 'works' ? styles.active : ''}
             >
-              <span className={styles.mobileMenuText}>SORTIMENT</span>
+              <span className={styles.mobileMenuText}>{t('sortiment')}</span>
               {activeSection === 'works' && <span className={styles.activeIndicator}></span>}
             </a>
           </li>
@@ -191,7 +197,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'craft')}
               className={activeSection === 'craft' ? styles.active : ''}
             >
-              <span className={styles.mobileMenuText}>HÅNDVÆRK</span>
+              <span className={styles.mobileMenuText}>{t('haandvaerk')}</span>
               {activeSection === 'craft' && <span className={styles.activeIndicator}></span>}
             </a>
           </li>
@@ -201,7 +207,7 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'om')}
               className={activeSection === 'om' ? styles.active : ''}
             >
-              <span className={styles.mobileMenuText}>OM</span>
+              <span className={styles.mobileMenuText}>{t('om')}</span>
               {activeSection === 'om' && <span className={styles.activeIndicator}></span>}
             </a>
           </li>
@@ -211,9 +217,12 @@ export default function Navigation() {
               onClick={(e) => scrollToSection(e, 'contact')}
               className={activeSection === 'contact' ? styles.active : ''}
             >
-              <span className={styles.mobileMenuText}>KONTAKT</span>
+              <span className={styles.mobileMenuText}>{t('kontakt')}</span>
               {activeSection === 'contact' && <span className={styles.activeIndicator}></span>}
             </a>
+          </li>
+          <li className={styles.mobileLanguageSwitcher}>
+            <LanguageSwitcher />
           </li>
         </ul>
       </div>

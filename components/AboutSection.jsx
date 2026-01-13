@@ -2,10 +2,12 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 import { urlFor } from '../lib/sanity'
 import styles from './AboutSection.module.css'
 
 export default function AboutSection({ data }) {
+  const t = useTranslations('about')
   const [visible, setVisible] = useState(false)
   const sectionRef = useRef(null)
 
@@ -34,7 +36,7 @@ export default function AboutSection({ data }) {
   }, [])
 
   // Default placeholder data
-  const title = data?.title || 'Om KNAPVÆRK'
+  const title = data?.title || t('title')
   const content = data?.content || 'KNAPVÆRK er et værksted, der arbejder altovervejende i træ. Alle knapper begynder og slutter ved materialets struktur, styrker og begrænsninger.\n\nArbejdet udføres med traditionelle metoder. Primært håndværktøj. Træet udvælges nøje og bearbejdes med stadig opmærksomhed på åretegning, densitet og overflade. Præcision opbygges gennem gentagelse og håndelag.\n\nTræsorter som ibenholt, ahorn og valnød vælges for deres egenskaber og måde at ældes på. Formgivningen er enkel og altid baseret lige dele på funktion og æstetik.'
   const image = data?.image
 
@@ -66,7 +68,7 @@ export default function AboutSection({ data }) {
             />
           ) : (
             <div className={styles.imagePlaceholder}>
-              <span>Billede kommer her</span>
+              <span>{t('imagePlaceholder')}</span>
             </div>
           )}
         </div>
