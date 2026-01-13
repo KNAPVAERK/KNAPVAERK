@@ -41,7 +41,8 @@
     "imagePlaceholder": "Billede kommer her"
   },
   "cookie": {
-    "message": "Vi bruger ingen cookies eller tracking."
+    "message": "Vi bruger ingen cookies eller tracking.",
+    "dialogTitle": "Cookie information"
   },
   "footer": {
     "followInstagram": "Følg os på Instagram",

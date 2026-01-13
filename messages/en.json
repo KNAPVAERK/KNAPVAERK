@@ -41,7 +41,8 @@
     "imagePlaceholder": "Image coming soon"
   },
   "cookie": {
-    "message": "We don't use cookies or tracking."
+    "message": "We don't use cookies or tracking.",
+    "dialogTitle": "Cookie information"
   },
   "footer": {
     "followInstagram": "Follow us on Instagram",

@@ -21,7 +21,11 @@
       "Bash(cat:*)",
       "Bash(git show:*)",
       "Bash(npx sanity --version)",
-      "Bash(npx sanity dev)"
+      "Bash(npx sanity dev)",
+      "Bash(git restore:*)",
+      "Bash(mkdir:*)",
+      "Bash(if exist .next rmdir /s /q .next)",
+      "Bash(netstat:*)"
     ]
   }
 }

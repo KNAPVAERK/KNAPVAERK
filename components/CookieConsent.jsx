@@ -34,7 +34,7 @@ export default function CookieConsent() {
     <div
       className={`${styles.overlay} ${isClosing ? styles.closing : ''}`}
       role="dialog"
-      aria-labelledby="cookie-title"
+      aria-label={t('dialogTitle')}
       aria-describedby="cookie-description"
     >
       <div className={styles.banner}>
