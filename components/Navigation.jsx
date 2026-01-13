@@ -95,6 +95,8 @@ export default function Navigation() {
           <img
             src="/assets/images/knapvaerk-nav-logo.svg"
             alt="KNAPVÆRK"
+            width="120"
+            height="20"
             className={styles.logoImage}
           />
         </div>
@@ -121,6 +123,8 @@ export default function Navigation() {
             <img
               src="/assets/images/knapvaerk-nav-logo.svg"
               alt="KNAPVÆRK"
+              width="108"
+              height="18"
               className={styles.logoImage}
             />
           </div>
@@ -177,6 +181,8 @@ export default function Navigation() {
           <img
             src="/assets/images/knapvaerk-nav-logo.svg"
             alt="KNAPVÆRK"
+            width="96"
+            height="16"
             className={styles.mobileMenuLogo}
           />
         </div>
