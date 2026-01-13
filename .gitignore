@@ -33,3 +33,5 @@ yarn-error.log*
 
 # Sanity
 studio/node_modules
+.sanity/
+dist/
