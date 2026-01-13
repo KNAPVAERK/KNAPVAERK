@@ -63,9 +63,6 @@
 }
 
 .text p:first-child {
-  font-size: var(--text-md);
-  font-weight: 400;
-  color: var(--text-primary);
   margin-bottom: 2rem;
 }
 
@@ -196,7 +193,6 @@
   }
 
   .text p:first-child {
-    font-size: var(--text-base);
     margin-bottom: var(--space-sm);
   }
 

@@ -24,7 +24,7 @@ export default defineConfig({
           {name: 'metaText', title: 'Meta Text', type: 'text', rows: 3},
           {name: 'metaText_en', title: 'Meta Text (English)', type: 'text', rows: 3},
           {name: 'order', title: 'Display Order', type: 'number', validation: (Rule) => Rule.required().min(0)},
-          {name: 'images', title: 'Images', type: 'array', of: [{type: 'image', options: {hotspot: true}, fields: [{name: 'alt', type: 'string', title: 'Alternative Text'}, {name: 'caption', type: 'string', title: 'Caption'}]}]},
+          {name: 'images', title: 'Images', type: 'array', of: [{type: 'image', options: {hotspot: true}, fields: [{name: 'alt', type: 'string', title: 'Alternative Text'}, {name: 'alt_en', type: 'string', title: 'Alternative Text (English)'}, {name: 'caption', type: 'string', title: 'Caption'}, {name: 'caption_en', type: 'string', title: 'Caption (English)'}]}]},
         ],
       },
       {
