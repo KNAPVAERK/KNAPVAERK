@@ -45,8 +45,8 @@ export async function POST(request) {
 
     // Send email using Resend
     const data = await resend.emails.send({
-      from: 'KNAPVÆRK Kontaktformular <onboarding@resend.dev>', // Resend's test email
-      to: ['bjerre@knapvaerk.com'], // Resend verified email
+      from: 'KNAPVÆRK Kontaktformular <kontakt@knapvaerk.com>', // Domain-verified sender
+      to: ['bjerre@knapvaerk.com'], // Recipient email
       replyTo: email, // User's email for easy reply
       subject: `Ny besked: ${subject}`,
       text: `
